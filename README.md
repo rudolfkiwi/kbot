@@ -1,9 +1,11 @@
 # kbot
-devops app from scratch
 
-**Telegram link:** t.me/rudolfkiwi_bot
+DevOps app from scratch
 
-## Features:
+**Telegram link:** https://t.me/rudolfkiwi_bot
+
+## Features
+
 - Control traffic light signals (red, amber, green) through Telegram commands
 - Toggle individual lights on/off
 - Simple and intuitive command interface
