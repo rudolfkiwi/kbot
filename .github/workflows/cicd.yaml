@@ -6,6 +6,9 @@ jobs:
   ci:
     name: CI
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      contents: write
 
     steps:
       - name: Checkout
@@ -17,15 +20,22 @@ jobs:
         run: make test
 
       - name: DockerHub login
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       
+      - name: GHCR login
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
       - name: Build&Push
         env:
           APP: "kbot"
-          REGISTRY: ${{ secrets.DOCKERHUB_USERNAME }}
+          REGISTRY: "ghcr.io/${{ github.actor }}"
         run: make image push
 
 
