@@ -30,7 +30,6 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "helm.serviceAccountName" . }}
       {{- with .Values.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
@@ -50,6 +49,8 @@ spec:
           - mountPath: /dev/mem
             name: dev-mem
           image: {{ .Values.image.repository }}/{{ .Chart.Name }}:{{ .Values.image.tag | default .Chart.AppVersion }}-{{ .Values.image.arch | default "arm64"}}
+          args:
+            - kbot
           env:
           - name: {{ .Values.secret.tokenName }}
             valueFrom:
