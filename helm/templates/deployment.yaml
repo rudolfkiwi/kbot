@@ -48,7 +48,7 @@ spec:
           volumeMounts:
           - mountPath: /dev/mem
             name: dev-mem
-          image: {{ .Values.image.repository }}/{{ .Chart.Name }}:{{ .Values.image.tag | default .Chart.AppVersion }}-{{ .Values.image.arch | default "arm64"}}
+          image: {{ .Values.image.repository }}/{{ .Chart.Name }}:{{ .Values.image.tag | default .Chart.AppVersion }}-{{ .Values.image.os | default "linux"}}-{{ .Values.image.arch | default "arm64"}}
           args:
             - kbot
           env:

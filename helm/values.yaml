@@ -11,7 +11,8 @@ image:
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v1.2.0-deea722"
-  arch: amd64
+  arch: "amd64"
+  os: "linux"
 secret:
   name: kbot
   tokenKey: token
