@@ -58,6 +58,9 @@ pipeline {
         }
 
         stage("image") {
+            when {
+                expression { params.OS == 'linux' }
+            }
             steps {
                 script {
                     echo 'BUILD EXECUTION STARTED'
@@ -67,6 +70,9 @@ pipeline {
         }
 
         stage("push") {
+            when {
+                expression { params.OS == 'linux' }
+            }
             steps {
                 script {
                     docker.withRegistry( '', 'dockerhub' ) {
